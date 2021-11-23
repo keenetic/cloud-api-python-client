@@ -1,0 +1,5 @@
+include readme.md
+include LICENSE
+include MANIFEST.in
+include requirements.txt
+recursive-include ndcloudclient/crt *
