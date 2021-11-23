@@ -8,7 +8,7 @@ setup(
     name='ndcloudclient',
     version='1.0.0',
     packages=find_packages(),
-    url='https://github.com/keenetic/ndss-api-python-client',
+    url='https://github.com/keenetic/cloud-api-python-client',
     license='',
     author='Keenetic Ltd.',
     author_email='developers@keenetic.com',
