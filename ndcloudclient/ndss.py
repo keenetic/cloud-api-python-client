@@ -97,7 +97,7 @@ class NDSS(object):
             endpoint: str,
             params_get: Dict[str, str],
             data: bytes
-    ) -> tuple[Optional[Dict], Optional[int]]:
+    ) -> Tuple[Optional[Dict], Optional[int]]:
         """
         Sends POST-request with data to NDSS endpoint
         :raise NDSSException
