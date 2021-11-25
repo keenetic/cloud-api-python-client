@@ -319,7 +319,7 @@ class NDSS(object):
             token_alias: str,
             bearer_value: str,
             explained: bool = True
-    ) -> Optional[Dict[str]]:
+    ) -> Optional[Dict[str, object]]:
         """
 
         :param token_alias: string with token alias

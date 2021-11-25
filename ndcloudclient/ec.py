@@ -246,7 +246,7 @@ def sign_ec_signature_for_trust(
 # Helper functions
 
 
-def _contains_all(params: Dict[str], mandatory: List[str]) -> Tuple[bool, List[str]]:
+def _contains_all(params: Dict[str,object], mandatory: List[str]) -> Tuple[bool, List[str]]:
     """
     Checks, if given params dict contains all keys from mandatory list
 
