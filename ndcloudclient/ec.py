@@ -2,6 +2,7 @@
 Elliptic Curve Signing and Verifying Methods
 """
 
+from typing import *
 from base58 import b58decode, b58encode
 from hashlib import sha256
 from datetime import datetime
@@ -35,7 +36,7 @@ class VerifySignatureOptions(object):
 
 
 def verify_signature_from_dict(
-        params: dict,
+        params: Dict,
         options: VerifySignatureOptions = None
 ) -> bool:
     """
@@ -182,7 +183,7 @@ def get_ec_private_key(signing_key: 'SigningKey') -> str:
 def _sign_ec_signature(
         signing_key: 'SigningKey',
         intent: str,
-        params_list: list[str]
+        params_list: List[str]
 ) -> str:
     """
     Creates signature of with values from params_list
@@ -200,7 +201,7 @@ def sign_ec_signature_for_validate(
         service_id: str,
         device_ec_public: str,
         service_ec_public: str,
-) -> tuple[str, int]:
+) -> Tuple[str, int]:
     """
     Creates signature for validateLink API method.
 
@@ -224,7 +225,7 @@ def sign_ec_signature_for_trust(
         cookie_text: str,
         expires_seconds: int,
         user_data: str
-) -> tuple[str, int, int]:
+) -> Tuple[str, int, int]:
     """
     Creates signature for trustCookie API method.
 
@@ -245,7 +246,7 @@ def sign_ec_signature_for_trust(
 # Helper functions
 
 
-def _contains_all(params: dict[str], mandatory: list[str]) -> tuple[bool, list[str]]:
+def _contains_all(params: Dict[str], mandatory: List[str]) -> Tuple[bool, List[str]]:
     """
     Checks, if given params dict contains all keys from mandatory list
 

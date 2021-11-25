@@ -2,9 +2,9 @@
 API client for NDSS server
 """
 
+from typing import *
 import random
 import string
-from typing import Optional, Union, Tuple
 from base64 import b64encode
 from os import path
 import requests
@@ -49,7 +49,7 @@ class NDSS(object):
     _callback_auth_login: str = ''
     _callback_auth_password: str = ''
 
-    def __init__(self, config: dict[str, str] = None):
+    def __init__(self, config: Dict[str, str] = None):
         if isinstance(config, dict):
             self.service_id = config.get('NDSS_SERVICE_ID')
             self._server_host = config.get('NDSS_SERVER')
@@ -79,8 +79,8 @@ class NDSS(object):
     def _get_from_ndss(
             self,
             endpoint: str,
-            params_get: dict[str, str]
-    ) -> tuple[Optional[dict], Optional[int]]:
+            params_get: Dict[str, str]
+    ) -> Tuple[Optional[Dict], Optional[int]]:
         """
         Sends GET-request to NDSS endpoint
         :raise NDSSException
@@ -95,9 +95,9 @@ class NDSS(object):
     def _post_to_ndss(
             self,
             endpoint: str,
-            params_get: dict[str, str],
+            params_get: Dict[str, str],
             data: bytes
-    ) -> tuple[Optional[dict], Optional[int]]:
+    ) -> tuple[Optional[Dict], Optional[int]]:
         """
         Sends POST-request with data to NDSS endpoint
         :raise NDSSException
@@ -115,7 +115,7 @@ class NDSS(object):
             self,
             endpoint: str,
             method: str,
-            params_get: dict[str, str],
+            params_get: Dict[str, str],
             data: Optional[bytes]
     ) -> 'requests.Response':
         """
@@ -200,7 +200,7 @@ class NDSS(object):
     def resolve_license(
             self,
             service_tag: str
-    ) -> tuple[Optional[str], Optional[str], Optional[str]]:
+    ) -> Tuple[Optional[str], Optional[str], Optional[str]]:
         """
         Requests NDSS to resolve Keenetic license (service tag) to token alias and device system name.
 
@@ -239,7 +239,7 @@ class NDSS(object):
             token_lives_sec: int,
             access_role: Optional[str],
             user_data: Optional[str]
-    ) -> tuple[str, int]:
+    ) -> Tuple[str, int]:
         """
         Requests NDSS to send access token to Keenetic device.
 
@@ -265,7 +265,6 @@ class NDSS(object):
 
         ndma_token = NDSS._generate_ndma_token()
         signing_key = load_ec_private(service_ec_private)  # EXException can be raised here
-
 
         ec_signature, timestamp, expires_at = \
             sign_ec_signature_for_trust(
@@ -298,7 +297,7 @@ class NDSS(object):
         return ndma_token, expires_at
 
     @staticmethod
-    def _explain_response(response_json: dict) -> Tuple[str, str]:
+    def _explain_response(response_json: Dict) -> Tuple[str, str]:
         """
         Searches for error code and error explanation in all known NDSS response formats
 
@@ -320,7 +319,7 @@ class NDSS(object):
             token_alias: str,
             bearer_value: str,
             explained: bool = True
-    ) -> Optional[dict[str]]:
+    ) -> Optional[Dict[str]]:
         """
 
         :param token_alias: string with token alias
