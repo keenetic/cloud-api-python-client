@@ -352,6 +352,7 @@ class NDSS(object):
             if explained:
                 explains = {
                     '1000': 'bearer_is_valid',
+                    '2000': 'rrst_version',
                     '4004': 'model_name',
                     '5100': 'fw_version'
                 }
