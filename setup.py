@@ -6,7 +6,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='ndcloudclient',
-    version='1.0.1',
+    version='1.0.2',
     packages=find_packages(),
     url='https://github.com/keenetic/cloud-api-python-client',
     license='',
