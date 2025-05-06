@@ -24,7 +24,7 @@ class NDSSException(Exception):
 
 class KeeneticDeviceException(Exception):
     """
-    Raises if proxyied request to router was failed under some reason
+    Raises if proxied request to router was failed under some reason
     """
     code: str
     description: str
@@ -79,7 +79,7 @@ class NDSS(object):
     def _get_from_ndss(
             self,
             endpoint: str,
-            params_get: Dict[str, str]
+            params_get: Dict[str, Any]
     ) -> Tuple[Optional[Dict], Optional[int]]:
         """
         Sends GET-request to NDSS endpoint
@@ -303,15 +303,9 @@ class NDSS(object):
 
         :return: string with error code and error description
         """
-        message = response_json.get('message')
-        if isinstance(message, dict):
-            title = message.get('title')
-            if isinstance(title, dict) and 'title' in title and 'result' in title:
-                return title.get('result'), title.get('title')
-            if 'code' in message and 'reason' in message:
-                code = message.get('code')
-                if code == 414:
-                    return '0x414', message.get('reason')
+        if isinstance(response_json, dict):
+            if 'code' in response_json and 'message' in response_json:
+                return response_json.get('code'), response_json.get('message')
         return '0x101', "unexpected answer format"
 
     def get_info(
